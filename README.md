@@ -6,16 +6,48 @@ Our experiment was conducted on physical devices and did not involve mininet cod
 
 ## 1 ServiceNAT based on v1model architecture (IPv4)
 ### 1.1 Test Topology
-                      |**Server**|———————————————|**Bmv2_Switch**|——————————————|**Client**|  
-                      |172.18.100.2|             |  SW Bind port |              |172.18.101.2|
-Note: The IP address is marked as the connection address of the physical interface.  
+                      | **Server** |——————————————|**Bmv2_Switch**|—————————————| **Client** |  
+                      |172.18.100.2|              |  SW Bind port |             |172.18.101.2|
+Note: The IP address is marked as the connection address of the physical interface.We assume that the service IP address is **128.0.0.1**. MAC address is based on actual. 
 
 ### 1.2 Operating sequence
-(1) Compile P4, generate .json file  
->`p4c --target bmv2 --arch v1model --std p4-16 xxx.p`    
-(2) Activate simple_switch  
->`sudo simple_switch --device-id 152 -i 1@enp6s0f1 -i 2@enp5s0f0 -i 3@enp6s0f0 --thrift-port 9090 xx.json`  
+(1) Compile P4, generate .json file: 
+- `p4c --target bmv2 --arch v1model --std p4-16 ServiceNAT_v1model.p4`
+    
+(2) Activate simple_switch and bind port:
+- `sudo simple_switch --device-id 152 -i 1@enp6s0f1 -i 2@enp5s0f0 -i 3@enp6s0f0 --thrift-port 9090 ServiceNAT_v1model.json`
+- See simple_switch description for details.
+
+(3) Flowtable:
+- `simple_switch_CLI --thrift-port 9090 <ServiceNAT_simple-switch-flowtable_v1model.txt`
+
+(4)Test by iperf:
+- `iperf -s`
+- `iperf -c 128.0.0.1`
+
+Our re-calculation of the L4 checksum makes use of functions integrated with the v1model.
+If successful, the service address issued by the client is converted to the server's interface address. The client makes a normal TCP connection to the server and the iperf result is displayed on both sides.For the user, it establishes a connection to the _**service address**_. And for the server, it establishes a connection to the **_specific host address_**. 
+
 ## 2 ServiceNAT based on TNA architecture (IPv6)
 ### 2.1 Test Topology
+                      |**Server**|———————————————|**Tofino_Switch**|——————————————|**Client**|  
+                      |2000::250 |               |   Switch port   |              |2000::152 |
+Note: The IP address is marked as the connection address of the physical interface.We assume that the service IP address is **2000::4**. MAC address is based on actual.
 
-### 1.2 Operating sequence
+### 2.2 Operating sequence  
+Our Tofino switch model is an Intel S9180 with sde9.7.0.
+(1)Booting and connecting the switch： 
+- sudo ssh root@_tofino console IP_
+
+(2)Configuring the Tofino Switch:
+- `cd bf-sde-9.7.0`Entering the SDE environment.
+- `source set_sde.bash`Configure SDE environment variables such as **$SDE,$SDE_INSTALL**.
+- `veth_setup.sh`loading port.
+- `./install/bin/bf_kdrv_mod_load $SDE_INSTALL`Loading the kernel driver.
+
+(3)Compiling P4 files:
+- `scp packet_name -r root@tofino console IP:/bf-sde-9.7.0/pkgsrc/p4-examples/p4_16_programs/`Copy file to path.
+- `cd /bf-sde-9.7.0/p4studio/`Go to the compile folder and use the cmake file inside to compile p4.
+- `cmake -DCMAKE_INSTALL_PREFIX=$SDE/install -DCMAKE_MODULE_INSTALL_PATH=$SDE/cmake -DP4_NAME=XX -DP4_PATH=/bf-sde-9.7.0/pkgsrc/p4-examples/p4_16_programs/XX/XX.p4`
+- `make`
+- `make install`Successful if no Error is prompted in the middle of the process.

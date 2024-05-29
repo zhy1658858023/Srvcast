@@ -4,7 +4,8 @@ This is a P4 program that ensures L4 connectivity (such as TCP) while completing
 It's called ***ServiceNAT*** because we use it for service address to host address translation, which is part of the base experiment our paper (Provide network scheduling for computing tasks based on service identification(Service IP)).  
 Our experiment was conducted on physical devices and did not involve mininet code.  
 
-## 1 ServiceNAT based on v1model architecture (IPv4)
+## 1 ServiceNAT based on v1model architecture (IPv4)  
+File requirements:`ServiceNAT_v1model.p4`,`ServiceNAT_simple-switch-flowtable_v1model.txt`
 ### 1.1 Test Topology
                       | **Server** |——————————————|**Bmv2_Switch**|—————————————| **Client** |  
                       |172.18.100.2|              |  SW Bind port |             |172.18.101.2|
@@ -29,7 +30,8 @@ Our re-calculation of the L4 checksum makes use of functions integrated with the
 If successful, the service address issued by the client is converted to the server's interface address. The client makes a normal TCP connection to the server and the iperf result is displayed on both sides.For the user, it establishes a connection to the _**service address**_. And for the server, it establishes a connection to the **_specific host address_**.  
 
 
-## 2 ServiceNAT based on TNA architecture (IPv6)
+## 2 ServiceNAT based on TNA architecture (IPv6)  
+File requirements:`ServiceNAT_tofino.p4`,`ServiceNAT_tofino_header.p4`,`util.p4`,`ServiceNAT_tofino-flowtable.txt`
 ### 2.1 Test Topology
                       |**Server**|———————————————|**Tofino_Switch**|——————————————|**Client**|  
                       |2000::250 |               |   Switch port   |              |2000::152 |

@@ -1,5 +1,5 @@
 # ServiveNAT
-P4_16 based service address translation (including v1model architecture and TNA architecture).  
+P4_16 based network address translation (including v1model architecture and TNA architecture).  
 This is a P4 program that ensures L4 connectivity (such as TCP) while completing network address translation.  
 It's called ***ServiceNAT*** because we use it for service address to host address translation, which is part of the base experiment our paper (Provide network scheduling for computing tasks based on service identification(Service IP)).  
 Our experiment was conducted on physical devices and did not involve mininet code.  

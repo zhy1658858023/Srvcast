@@ -1,0 +1,2 @@
+table_add ipv4_c2s ipv4_p4nat_forward_c2s 128.0.0.1/32 => f8:0f:41:f6:d8:6b 1 172.18.100.2  
+table_add ipv4_s2c ipv4_p4nat_forward_s2c 172.18.100.2/32 => 00:1b:21:4a:f2:6d 2 128.0.0.1

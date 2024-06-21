@@ -9,7 +9,7 @@ File requirements:`ServiceNAT_v1model.p4`,`ServiceNAT_simple-switch-flowtable_v1
 ### 1.1 Test Topology
                       | **Server** |——————————————|**Bmv2_Switch**|—————————————| **Client** |  
                       |172.18.100.2|              |  SW Bind port |             |172.18.101.2|
-Note: The IP address is marked as the connection address of the physical interface.We assume that the service IP address is **128.0.0.1**. MAC address is based on actual. 
+Note: The IP address is marked as the connection address of the physical interface.We assume that the service IP address is **128.0.0.1**. MAC address is based on actual.  
 
 ### 1.2 Operating sequence
 (1) Compile P4, generate .json file: 

@@ -7,6 +7,7 @@ import time
 start_time = None   # timestamp
 
 
+
 def report_execution_time():
     global start_time
     if start_time is None:

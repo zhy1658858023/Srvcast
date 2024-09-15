@@ -1,0 +1,2 @@
+table_add swtrace transition_swtrace => 17
+table_add ipv6_lpm ipv6_forward fc00::10 => 08:00:00:00:10:10 3

@@ -1,0 +1,67 @@
+{
+    "swid1": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "481us", 
+        "queue_delay": "44us"
+    }, 
+    "swid2": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "381us", 
+        "queue_delay": "69us"
+    }, 
+    "swid3": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "297us", 
+        "queue_delay": "12us"
+    }, 
+    "swid13": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "369us", 
+        "queue_delay": "44us"
+    }, 
+    "swid14": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "418us", 
+        "queue_delay": "79us"
+    }, 
+    "swid15": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "566us", 
+        "queue_delay": "116us"
+    }, 
+    "swid16": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "264us", 
+        "queue_delay": "32us"
+    }, 
+    "swid17": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "307us", 
+        "queue_delay": "41us"
+    }, 
+    "swid6": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "321us", 
+        "queue_delay": "32us"
+    }, 
+    "swid4": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "321us", 
+        "queue_delay": "56us"
+    }, 
+    "swid5": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "351us", 
+        "queue_delay": "35us"
+    }, 
+    "swid10": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "283us", 
+        "queue_delay": "32us"
+    }, 
+    "swid18": {
+        "queue_depth": "0pkt", 
+        "hop_delay": "294us", 
+        "queue_delay": "32us"
+    }
+}

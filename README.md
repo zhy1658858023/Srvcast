@@ -1,3 +1,5 @@
+Statement: The prototype system for the Srvcast project was developed in collaboration with the China Telecom Research Institute. Due to copyright ownership issues regarding the project’s deliverables, other parts of the Srvcast prototype system cannot be made public. 
+
 # ServiveNAT demo
 P4_16 based network address translation (including v1model architecture and TNA architecture).  
 This is a P4 program that ensures L4 connectivity (such as TCP) while completing network address translation.  
